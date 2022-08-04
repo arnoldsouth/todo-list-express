@@ -1,7 +1,13 @@
-h1{
-    color: red;
+/* Selecting any h1 tag in a file referencing to this stylesheet */
+h1 {
+  /* Assigning these h1 tags with the color RED */
+  color: red;
+  /* Closing our h1 tag selector */
 }
-.completed{
-    color: gray;
-    text-decoration: line-through;
+/* Targets any items with the CLASS of 'completed' */
+.completed {
+  /* Assigning these target classes with the color GRAY */
+  color: gray;
+  /* Applies strikethrough font style to these target classes' text */
+  text-decoration: line-through;
 }

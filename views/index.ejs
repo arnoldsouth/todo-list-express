@@ -1,47 +1,97 @@
+<!-- Telling the browser what type of document will be shown -->
 <!DOCTYPE html>
+<!-- Starts HTML tag with the language as English -->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Starting the head tag to store our metadata -->
+  <head>
+    <!-- Indicates what characters should be used (encoding type)  -->
+    <meta charset="UTF-8" />
+    <!-- Sets browser compatibility -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Sets width for user's device -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Sets the title at the top of the browser tab -->
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <!-- Links to the Font Awesome Icon library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- Links to our local stylesheet within the css folder, in the public folder -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Closing our head tag -->
+  </head>
+
+  <!-- Main section for content to be displayed -->
+  <body>
+    <!-- Additional text that could be a typo -->
     <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Todo List: </h1>
-    <ul class="todoItems">
-    <% for(let i=0; i < items.length; i++) {%>
-        <li class="item">
+    <!-- Additional text that could be a typo -->
+    <html lang="en">
+      <!-- Additional text that could be a typo -->
+      <head>
+        <!-- Additional text that could be a typo -->
+        <meta charset="UTF-8" />
+        <!-- Additional text that could be a typo -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Additional text that could be a typo -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Additional text that could be a typo -->
+        <title>Document</title>
+        <!-- Additional text that could be a typo -->
+      </head>
+
+      <!-- Additional text that could be a typo -->
+      <body>
+        <!-- Main title to be displayed on page -->
+        <h1>Todo List:</h1>
+        <!-- Create unordered list and assign class to the list -->
+        <ul class="todoItems">
+          <!-- Uses EJS file and creates a FOR loop -->
+          <% for(let i=0; i < items.length; i++) {%>
+          <!-- Create a list item with a class of 'item' -->
+          <li class="item">
+            <!-- In EJS, to check if an item in an array with a 'completed' property is true -->
             <% if(items[i].completed === true) {%>
-                <span class='completed'><%= items[i].thing %></span>
+            <!-- Creating an inline element with a class 'completed' and adding EJS to display the name of the task -->
+            <span class="completed"><%= items[i].thing %></span>
+            <!-- EJS for the ELSE clause of our IF statement -->
             <% }else{ %>
-                <span><%= items[i].thing %></span>
-            <% } %>    
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+            <!-- EJS to display the name of the task with NO CLASS -->
+            <span><%= items[i].thing %></span>
+            <!-- EJS to close the ELSE statement -->
+            <% } %> Displays Font Awesome Icon of trashcan inside of span
+            <span class="fa fa-trash"></span>
+            <!-- Closing our List item -->
+          </li>
+          <!-- Closing our EJS FOR loop -->
+          <% } %>
+          <!-- Closing our unordered list -->
+        </ul>
 
-    <h2>Left to do: <%= left %></h2>
+        <!-- Creates a second level header tag with text and using EJS to display a variable showcasing how many tasks are left to complete -->
+        <h2>Left to do: <%= left %></h2>
 
-    <h2>Add A Todo:</h2>
+        <!-- Create a second level header tag with text -->
+        <h2>Add A Todo:</h2>
 
-    <form action="/addTodo" method="POST">
-        <input type="text" placeholder="Thing To Do" name="todoItem">
-        <input type="submit">
-    </form>
-    
+        <!-- Create a form with the 'POST' method that goes to the '/addTodo' route. Note that forms cannot update/'PUT' -->
+        <form action="/addTodo" method="POST">
+          <!-- Create an INPUT box that accepts the TEXT type, with the default TEXT placeholder 'Thing To Do'. This input box is given the name 'todoItem' to be referenced -->
+          <input type="text" placeholder="Thing To Do" name="todoItem" />
+          <!-- Create the SUBMIT button for the form we created -->
+          <input type="submit" />
+          <!-- Closing our form tag -->
+        </form>
 
-    <script src='js/main.js'></script>
-</body>
+        <!-- Links to the main.js file within the js folder, in the public folder -->
+        <script src="js/main.js"></script>
+        <!-- Additional text that could be a typo -->
+      </body>
+      <!-- Additional text that could be a typo -->
+    </html>
+    <!-- Closing our body tag -->
+  </body>
+  <!-- Closing our html tag -->
 </html>

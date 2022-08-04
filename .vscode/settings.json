@@ -1,4 +1,4 @@
 {
-    "editor.fontSize": 42,
-    "terminal.integrated.fontSize": 62
+  // "editor.fontSize": 42, // Commenting out Leon's defaulted font size
+  // "terminal.integrated.fontSize": 62 // Commenting out Leon's defaulted font size
 }
