@@ -1,10 +1,10 @@
-// Create a constant variable `deleteBtn`, assigning to it a NodeList with HTML Elements having the class of `fa-trash`
+// Create a constant variable `deleteBtn` and assign a NodeList of HTML Elements with the class `fa-trash` to it
 const deleteBtn = document.querySelectorAll(".fa-trash");
 
-// Create a constant variable `item`, assigning to it a NodeList with HTML Elements having the class of `item` and <span> as children
+// Create a constant variable `item` and assign a NodeList of HTML Elements with the class `item` having <span> as children to it
 const item = document.querySelectorAll(".item span");
 
-// Create a constant variable `item`, assigning to it a NodeList with HTML Elements having the class of `item` and <span> as children with a class of `completed`
+// Create a constant variable `item` and assign a NodeList of HTML Elements with the class `item` having <span> as children to it with a class of `completed`
 const itemCompleted = document.querySelectorAll(".item span.completed");
 
 // Convert the variable `deleteBtn` to an array of HTML Elements and call `forEach` on it

@@ -1,3 +1,4 @@
+// Create a constant variable `express` and assign the imported `express` module to it
 const express = require("express");
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
