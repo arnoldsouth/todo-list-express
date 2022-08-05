@@ -28,17 +28,32 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then(
   }
 );
 
+// Call `set` method on our Express app's setting properties; `view engine` is the template engine to use, and `ejs` is the template
 app.set("view engine", "ejs");
+
+// Call the Express app's `use` method to use middleware `express.static`, which is to serve static content for the app from the `public` directory in the application directory
 app.use(express.static("public"));
+
+// Call the Express app's `use` method to use middleware function `express.urlencoded`, which is to parse incoming requests with urlencoded payloads and is based on `body-parser`; aka adds `body-parser` `urlencoded` middleware to the Express app, and parses the content requests `Content-Type` with the type "application/x-www-form-urlencoded"
+// From Express docs: Returns middleware that only parses urlencoded bodies and only looks at requests where the Content-Type header matches the type option
 app.use(express.urlencoded({ extended: true }));
+
+// Adds `body-parser` `json` middleware to the Express app, and parses the content requests `Content-Type` with the type "application/json"
 app.use(express.json());
 
+// Use `get` method to create a custom request handler at the path `/`
 app.get("/", async (request, response) => {
+  // Create a variable `todoItems`, assigning to it an array of document objects within the connected database's collection; at the database's collection, we use find() with no filter object to obtain all documents, and then we use toArray() to convert document query into an array
   const todoItems = await db.collection("todos").find().toArray();
+
+  // Create a variable `itemsLeft`, assigning to it an array of completed document objects within the connected database's collection; at the database's collection, we use countDocuments() with the property `completed` and value of `false` to obtain only documents that haven't been completed
   const itemsLeft = await db
     .collection("todos")
     .countDocuments({ completed: false });
+
+  // Renders our view using `index.ejs` with the variables `todoItems` and `itemsLeft`
   response.render("index.ejs", { items: todoItems, left: itemsLeft });
+
   // db.collection('todos').find().toArray()
   // .then(data => {
   //     db.collection('todos').countDocuments({completed: false})
@@ -49,13 +64,17 @@ app.get("/", async (request, response) => {
   // .catch(error => console.error(error))
 });
 
+// Use `post` method to create a custom request handler at the path `/addTodo`
 app.post("/addTodo", (request, response) => {
+  // Within the collection, insertOne() is used to call objects with the properties `thing` and `completed`, with `request.body.todoItem` and `false` as values for those properties, respectively
   db.collection("todos")
     .insertOne({ thing: request.body.todoItem, completed: false })
+    // After insertOne() method, the page redirects to the path at `/`
     .then((result) => {
       console.log("Todo Added");
       response.redirect("/");
     })
+    // If insertOne() method fails, we log the error to the browser console
     .catch((error) => console.error(error));
 });
 
