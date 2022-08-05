@@ -78,24 +78,31 @@ app.post("/addTodo", (request, response) => {
     .catch((error) => console.error(error));
 });
 
+// Use `put` method to update a custom request handler at the path `/markComplete`
 app.put("/markComplete", (request, response) => {
+  // Within the collection, updateOne() is used to update object properties `thing` to the value at `request.body.itemFromJS` that was parsed from the `json` middleware
   db.collection("todos")
     .updateOne(
       { thing: request.body.itemFromJS },
+      // `$set` is the Update Operator used to update the `completed` property value to `true`
       {
         $set: {
           completed: true,
         },
       },
+      // `sort` is used to sort the document by ObjectId `_id` with the value `-1` to sort in descending order (sorting the latest document first)
       {
         sort: { _id: -1 },
+        // `Upsert` is used with a value of `true` to create the document if it doesn't exist. `Upsert` is used with a value of `false` to disable the creation of a document if it doesn't exist. Here, with it being `false`, we do not create the document if it does not exist
         upsert: false,
       }
     )
+    // After updateOne() method, the document is marked as completed
     .then((result) => {
       console.log("Marked Complete");
       response.json("Marked Complete");
     })
+    // If updateOne() method fails, we log the error to the browser console
     .catch((error) => console.error(error));
 });
 
