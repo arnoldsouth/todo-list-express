@@ -54,7 +54,7 @@
           <li class="item">
             <!-- In EJS, to check if an item in an array with a 'completed' property is true -->
             <% if(items[i].completed === true) {%>
-            <!-- Creating an inline element with a class 'completed' and adding EJS to display the name of the task -->
+            <!-- If this value is true, create an inline element with a class 'completed' and adding EJS to display the name of the task -->
             <span class="completed"><%= items[i].thing %></span>
             <!-- EJS for the ELSE clause of our IF statement -->
             <% }else{ %>
